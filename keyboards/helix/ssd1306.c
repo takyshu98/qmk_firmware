@@ -18,9 +18,8 @@
 
 //assign the right code to your layers
 #define _BASE 0
-#define _INDEXF 8
-#define _LOWER 16
-#define _RAISE 32
+#define _LOWER 8
+#define _RAISE 16
 #define _FNLAYER 64
 #define _NUMLAY 128
 #define _NLOWER 136
@@ -435,11 +434,8 @@ static void render_status_info(void) {
         case _BASE:
            matrix_write_P(&matrix, PSTR("Default"));
            break;
-        case _INDEXF:
-           matrix_write_P(&matrix, PSTR("Index finger"));
-           break;
         case _RAISE:
-           matrix_write_P(&matrix, PSTR("Raise"));
+           matrix_write_P(&matrix, PSTR("Index (Raise)"));
            break;
         case _LOWER:
            matrix_write_P(&matrix, PSTR("Fn (Lower)"));
