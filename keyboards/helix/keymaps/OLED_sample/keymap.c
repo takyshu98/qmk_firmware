@@ -13,7 +13,9 @@
 extern keymap_config_t keymap_config;
 
 //Following line allows macro to read current RGB settings
+#ifdef RGBLIGHT_ENABLE
 extern rgblight_config_t rgblight_config;
+#endif
 
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
@@ -35,6 +37,7 @@ enum custom_keycodes {
   RAISE,
   ADJUST,
   BACKLIT,
+#ifdef RGBLIGHT_ENABLE
   RGBLED_TOGGLE,
   RGBLED_STEP_MODE,
   RGBLED_INCREASE_HUE,
@@ -43,12 +46,22 @@ enum custom_keycodes {
   RGBLED_DECREASE_SAT,
   RGBLED_INCREASE_VAL,
   RGBLED_DECREASE_VAL,
+#endif
 };
 
 enum macro_keycodes {
   KC_SAMPLEMACRO,
 };
 
+#ifdef TAP_DANCE_ENABLE
+enum {
+    TD_T_MINS = 0
+};
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+    [TD_T_MINS] = ACTION_TAP_DANCE_DOUBLE(KC_T, KC_MINS)
+};
+#endif
 
 // Fillers to make layering more clear
 #define _______ KC_TRNS
@@ -95,6 +108,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |Adjust|Lower |Raise | Alt  | GUI  |Enter |Space | GUI  | Alt  |Raise |Lower |Lower |
    * `-----------------------------------------------------------------------------------'
    */
+#ifdef TAP_DANCE_ENABLE
+  [_QWERTY] = KEYMAP( \
+      KC_ESC,  KC_1,  KC_2,   KC_3,   KC_4,   KC_5,     KC_6,   KC_7,   KC_8,   KC_9,   KC_0,    KC_BSPC, \
+      KC_TAB,  KC_Q,  KC_W,   KC_E,   KC_R,   TD(TD_T_MINS),     KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,    KC_BSLS, \
+      KC_LCTL, KC_A,  KC_S,   KC_D,   KC_F,   KC_G,     KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN, KC_RCTL, \
+      KC_LSFT, KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,     KC_N,   KC_M,  KC_COMM, KC_DOT, KC_SLSH, KC_RSFT, \
+      ADJUST,  LOWER, RAISE, KC_LALT, KC_LGUI, KC_ENT,  KC_SPC, KC_RGUI, KC_RALT,  RAISE, LOWER, LOWER    \
+      ),
+#else
   [_QWERTY] = KEYMAP( \
       KC_ESC,  KC_1,  KC_2,   KC_3,   KC_4,   KC_5,     KC_6,   KC_7,   KC_8,   KC_9,   KC_0,    KC_BSPC, \
       KC_TAB,  KC_Q,  KC_W,   KC_E,   KC_R,   KC_T,     KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,    KC_BSLS, \
@@ -102,6 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LSFT, KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,     KC_N,   KC_M,  KC_COMM, KC_DOT, KC_SLSH, KC_RSFT, \
       ADJUST,  LOWER, RAISE, KC_LALT, KC_LGUI, KC_ENT,  KC_SPC, KC_RGUI, KC_RALT,  RAISE, LOWER, LOWER    \
       ),
+#endif
 
   /* Colemak
    * ,-----------------------------------------------------------------------------------.
@@ -243,6 +266,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |      |      |      |      |      | E/N  | Kana |      |      |      |      |      |
    * `-----------------------------------------------------------------------------------'
    */
+#ifdef RGBLIGHT_ENABLE
   [_ADJUST] =  KEYMAP( \
       KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, \
       _______, RESET,   _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL, \
@@ -250,6 +274,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       RGB_TOG, RGB_MOD, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
       _______, _______, _______, _______, _______, KC_LANG2,  KC_LANG1, _______, _______, _______, _______, _______ \
       )
+#else
+  [_ADJUST] =  KEYMAP( \
+      KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, \
+      _______, RESET,   _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL, \
+      _______, _______, _______, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK, DVORAK,  _______, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+      _______, _______, _______, _______, _______, KC_LANG2,  KC_LANG1, _______, _______, _______, _______, _______ \
+      )
+#endif
 };
 
 #elif HELIX_ROWS == 4
@@ -361,7 +394,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_ADJUST] =  KEYMAP( \
       _______, RESET,   _______, M_SAMPLE, _______, _______, _______, _______, _______, _______, _______, KC_DEL, \
       _______, _______, _______, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK, DVORAK,  _______, _______, \
-      RGB_TOG, RGB_MOD, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
       )
 };
@@ -393,7 +426,9 @@ void persistent_default_layer_set(uint16_t default_layer) {
 // Setting ADJUST layer RGB back to default
 void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
   if (IS_LAYER_ON(layer1) && IS_LAYER_ON(layer2)) {
+#ifdef RGBLIGHT_ENABLE
     rgblight_mode(RGB_current_mode);
+#endif
     layer_on(layer3);
   } else {
     layer_off(layer3);
@@ -436,12 +471,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (TOG_STATUS) { //TOG_STATUS checks is another reactive key currently pressed, only changes RGB mode if returns false
         } else {
           TOG_STATUS = !TOG_STATUS;
+#ifdef RGBLIGHT_ENABLE
           rgblight_mode(16);
+#endif
         }
         layer_on(_LOWER);
         update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
       } else {
+#ifdef RGBLIGHT_ENABLE
         rgblight_mode(RGB_current_mode);   // revert RGB to initial mode prior to RGB mode change
+#endif
         TOG_STATUS = false;
         layer_off(_LOWER);
         update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
@@ -455,12 +494,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (TOG_STATUS) { //TOG_STATUS checks is another reactive key currently pressed, only changes RGB mode if returns false
         } else {
           TOG_STATUS = !TOG_STATUS;
+#ifdef RGBLIGHT_ENABLE
           rgblight_mode(15);
+#endif
         }
         layer_on(_RAISE);
         update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
       } else {
+#ifdef RGBLIGHT_ENABLE
         rgblight_mode(RGB_current_mode);  // revert RGB to initial mode prior to RGB mode change
+#endif
         layer_off(_RAISE);
         TOG_STATUS = false;
         update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
@@ -487,6 +530,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
       break;
       //led operations - RGB mode change now updates the RGB_current_mode to allow the right RGB mode to be set after reactive keys are released
+#ifdef RGBLIGHT_ENABLE
     case RGB_MOD:
       if (record->event.pressed) {
         rgblight_mode(RGB_current_mode);
@@ -495,6 +539,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+#endif
   }
   return true;
 }
@@ -503,7 +548,9 @@ void matrix_init_user(void) {
     #ifdef AUDIO_ENABLE
         startup_user();
     #endif
+#ifdef RGBLIGHT_ENABLE
     RGB_current_mode = rgblight_config.mode;
+#endif
 }
 
 //SSD1306 OLED init and update loop, make sure to add #define SSD1306OLED in config.h
