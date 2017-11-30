@@ -52,6 +52,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_VAL_STEP 17
 
 // fix iPhone power adapter issue
-#define USB_MAX_POWER_CONSUMPTION 200
+#define USB_MAX_POWER_CONSUMPTION 100
 
 #endif
