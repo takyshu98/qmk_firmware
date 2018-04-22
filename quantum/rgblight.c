@@ -474,6 +474,14 @@ void rgblight_timer_toggle(void) {
   rgblight_timer_enabled ^= rgblight_timer_enabled;
   dprintf("TIMER3 toggled.\n");
 }
+bool rgblight_timer_suspend(void) {
+  bool oldstatus = rgblight_timer_enabled;
+  rgblight_timer_enabled = false;
+  return oldstatus;
+}
+void rgblight_timer_resume(bool oldstatus) {
+  rgblight_timer_enabled = oldstatus;
+}
 
 void rgblight_show_solid_color(uint8_t r, uint8_t g, uint8_t b) {
   rgblight_enable();
