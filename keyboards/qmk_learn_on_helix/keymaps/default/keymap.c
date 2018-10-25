@@ -22,10 +22,13 @@ enum custom_keycodes {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [0] = LAYOUT( /* Base */
-    KC_A,  KC_1,  KC_H, \
-      KC_TAB,  KC_SPC   \
-  ),
+  [0] = LAYOUT_kc( /* Base */
+  ESC, 1, 2, 3, 4, 5,
+  TAB, Q, W, E, R, T,
+  LCTL, A, S, D, F, G,
+  LSFT, Z, X, C, V, B, GRV,
+  NO, NO, NO, LALT, LGUI, SPC, ENT
+  )
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
