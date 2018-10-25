@@ -4,9 +4,9 @@
 
 mtei's qmk_firmware learning project use helix keyboard hardware
 
-Keyboard Maintainer: [Makoto Kurauchi](https://github.com/MakotoKurauchi/) [@pluis9](https://twitter.com/pluis9)
-Hardware Supported: Helix PCB Alpha, Beta, Pro Micro
-Hardware Availability: [PCB & Case Data](https://github.com/MakotoKurauchi/helix), [Yushakobo Shop](https://yushakobo.jp/shop/)
+Keyboard Maintainer: [Makoto Kurauchi](https://github.com/MakotoKurauchi/) [@pluis9](https://twitter.com/pluis9)  
+Hardware Supported: Helix PCB Alpha, Beta, Pro Micro  
+Hardware Availability: [PCB & Case Data](https://github.com/MakotoKurauchi/helix), [Yushakobo Shop](https://yushakobo.jp/shop/)  
 
 Make example for this keyboard (after setting up your build environment):
 
