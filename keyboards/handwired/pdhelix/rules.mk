@@ -85,3 +85,4 @@ MOUSEKEY_ENABLE = no       # Mouse keys(+4700)
 RGBLIGHT_ENABLE = yes        # Enable keyboard RGB underglow
 
 SPLIT_KEYBOARD = yes
+DEFAULT_FOLDER = handwired/pdhelix/pd0
