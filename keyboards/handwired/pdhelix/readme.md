@@ -1,6 +1,6 @@
 # pdhelix
 
-![pdhelix](imgur.com image replace me!)
+![Patchd Helix PD0](https://i.imgur.com/OvchUjl.jpg)
 
 This is a project using Helix keyboard with patch for quantum/split_common test.
 
