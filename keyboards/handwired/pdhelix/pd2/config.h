@@ -1,4 +1,4 @@
 #ifndef SOFT_SERIAL_PIN
 /* Soft Serial defines */
-#define SOFT_SERIAL_PIN D0
+#define SOFT_SERIAL_PIN D2
 #endif
