@@ -15,6 +15,10 @@
  */
 #include QMK_KEYBOARD_H
 
+#define KC_RBSCP LT(_RAISE,KC_BSPC)
+#define KC_RENT LT(_RAISE,KC_ENT)
+#define KC_LOWER MO(_LOWER)
+
 enum layer_number {
     _QWERTY = 0,
     _LOWER,
@@ -43,13 +47,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |Lower | Lower| Caps |  Alt |  GUI | Space|  BS  | Enter| Space| GUI  | Alt  | Menu |Lower |Lower |
    * `-------------------------------------------------------------------------------------------------'
    */
-  [_QWERTY] = LAYOUT( /* Base */
-      KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC, \
-      KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS, \
-      KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_RCTL, \
-      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_GRV, KC_QUOT,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
-      MO(_LOWER),MO(_LOWER),  KC_CAPS, KC_LALT, KC_LGUI, KC_SPC, LT(_RAISE,KC_BSPC), \
-                                                         LT(_RAISE,KC_ENT), KC_SPC,  KC_RGUI, KC_RALT, KC_APP,MO(_LOWER),MO(_LOWER) \
+  [_QWERTY] = LAYOUT_kc( /* Base */
+      ESC,    1,    2,    3,    4,    5,                6,    7,    8,    9,    0,    BSPC, \
+      TAB,    Q,    W,    E,    R,    T,                Y,    U,    I,    O,    P,    BSLS, \
+      LCTL,   A,    S,    D,    F,    G,                H,    J,    K,    L, SCLN,    RCTL, \
+      LSFT,   Z,    X,    C,    V,    B,   GRV,  QUOT,  N,    M,  COMM, DOT, SLSH,    RSFT, \
+      LOWER,LOWER,CAPS,LALT, LGUI,  SPC, RBSCP,  RENT, SPC, RGUI, RALT, APP, LOWER,  LOWER \
   ),
 
   /* Lower
@@ -60,9 +63,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |      | PgUp |      | Up   |Delete| Home |             | Home |Delete| Up   |      | PgUp |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      | PgDn | Left | Down | Right| End  |Adjust|Adjust| End  | Left | Down | Right| PgDn |      |
+   * |      | PgDn | Left | Down | Right| End  |      |      | End  | Left | Down | Right| PgDn |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      | PrtSc|      |      |      |      |      |      |      |      | PrtSc|      |      |
+   * |      |      | PrtSc|      |      |      |Adjust|Adjust|      |      |      | PrtSc|      |      |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_LOWER] = LAYOUT(                                                    \
@@ -97,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Adjust (Lower + Raise)
    * ,-----------------------------------------.             ,-----------------------------------------.
-   * |      |Keypad|Dvorak|Colemk|Euclyn|Qwerty|             |Qwerty|Euclyn|Colemk|Dvorak|Keypad|      |
+   * |      |      |      |      |      |      |             |      |      |      |      |      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |      | Reset|RGBRST|RGB ON|Aud on| Win  |             | Win  |Aud on|RGB ON|RGBRST|      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
