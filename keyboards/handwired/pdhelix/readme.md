@@ -2,9 +2,9 @@
 
 ![Patchd Helix PD0](https://i.imgur.com/OvchUjl.jpg)
 
-This is a project using Helix keyboard with patch for quantum/split_common test.
+This is a provisional Helix implementation for the quantum/split_common test
 
-Keyboard Maintainer: [mtei](https://github.com/mtei)  
+Firmware Maintainer: [mtei](https://github.com/mtei)  
 Hardware Supported: Helix PCB with patch, Pro Micro  
 Hardware Availability: links to where you can find this hardware
 
