@@ -2,6 +2,3 @@
 /* Soft Serial defines */
 #define SOFT_SERIAL_PIN D0
 #endif
-
-#define SERIAL_SLAVE_BUFFER_LENGTH MATRIX_ROWS/2
-#define SERIAL_MASTER_BUFFER_LENGTH 1
