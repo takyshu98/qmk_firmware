@@ -9,6 +9,9 @@
 
 #define SLAVE_I2C_ADDRESS           0x32
 
+// Serial Master to Slave buffer Address location defines
+#define SERIAL_BACKLIT_START   0x00
+
 extern volatile bool isLeftHand;
 
 // slave version of matix scan, defined in matrix.c
